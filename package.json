@@ -17,5 +17,8 @@
   "peerDependencies": {
     "webpack": "^4.0.0",
     "webpack-subresource-integrity": "^1.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4"
   }
 }

@@ -1,41 +1,41 @@
 /**
- * @param {{fileName: string}} options
+ * @param {{name: string, extensions: string[]}} options
  */
 function ExtractSubresourceIntegrityPlugin(options = {}) {
-  this.options = options;
+  this.options = options
 }
 
 ExtractSubresourceIntegrityPlugin.prototype.apply = function(compiler) {
   compiler.hooks.emit.tapAsync(
-    "ExtractSubresourceIntegrityPlugin",
+    'ExtractSubresourceIntegrityPlugin',
     (compilation, callback) => {
+      const {
+        name = 'subresource-integrity.json',
+        extensions = ['js', 'css'],
+      } = this.options
+
       const integrity = JSON.stringify(
-        compilation.chunks.reduce(
-          (acc, chunk) => ({
-            ...acc,
-            ...chunk.files.reduce(
-              (files, file) => ({
-                ...files,
-                [file]: compilation.assets[file].integrity
-              }),
-              {}
-            )
-          }),
-          {}
-        )
-      );
-      const fileName = this.options.fileName || "subresource-integrity.json";
-      compilation.assets[fileName] = {
+        Object.keys(compilation.assets)
+          .filter(asset => new RegExp(`[${extensions.join('|')}]$`).test(asset))
+          .reduce(
+            (acc, asset) => ({
+              ...acc,
+              [asset]: compilation.assets[asset].integrity,
+            }),
+            {}
+          )
+      )
+      compilation.assets[name] = {
         source() {
-          return integrity;
+          return integrity
         },
         size() {
-          return integrity.length;
-        }
-      };
-      callback();
+          return integrity.length
+        },
+      }
+      callback()
     }
-  );
-};
+  )
+}
 
-module.exports = ExtractSubresourceIntegrityPlugin;
+module.exports = ExtractSubresourceIntegrityPlugin

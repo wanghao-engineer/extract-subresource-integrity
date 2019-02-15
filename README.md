@@ -1,4 +1,4 @@
-# extract-subresource-integrity
+# webpack-extract-subresource-integrity
 
 This plugin work with [webpack-subresource-integrity](https://www.npmjs.com/package/webpack-subresource-integrity), it extract all integrity infomation into a single file.
 
@@ -16,7 +16,9 @@ const webpackConfig = {
     }),
     new ExtractSriPlugin({
       // set to name of the output file, default to 'subresource-integrity.json'
-      fileName: "integrityfilename.json"
+      name: "subresource-integrity.json"
+      // what kinds of files to extract integrity for, it applys to the compiled file, not source files
+      extensions: ['js', 'css']
     })
   ]
 };
