@@ -1,0 +1,21 @@
+{
+  "name": "webpack-extract-subresource-integrity",
+  "version": "0.0.1",
+  "description": "work with webpack-subresource-integrity, extract integrity infomation into a seperate file",
+  "keywords": [
+    "webpack",
+    "subresource-integrity"
+  ],
+  "homepage": "https://github.com/wanghao-engineer/extract-subresource-integrity",
+  "main": "index.js",
+  "author": "wanghao <wanghao.engineer@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanghao-engineer/extract-subresource-integrity"
+  },
+  "peerDependencies": {
+    "webpack": "^4.0.0",
+    "webpack-subresource-integrity": "^1.0.0"
+  }
+}
