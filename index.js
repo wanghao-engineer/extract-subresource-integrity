@@ -16,7 +16,7 @@ ExtractSubresourceIntegrityPlugin.prototype.apply = function(compiler) {
 
       const integrity = JSON.stringify(
         Object.keys(compilation.assets)
-          .filter(asset => new RegExp(`[${extensions.join('|')}]$`).test(asset))
+          .filter(asset => new RegExp(`(${extensions.join('|')})$`).test(asset))
           .reduce(
             (acc, asset) => ({
               ...acc,
