@@ -1,5 +1,5 @@
 /**
- * @param {{name: string, extensions: string[]}} options
+ * @param {{name: string, extensions: string[], appendPublicPath: boolean}} options
  */
 function ExtractSubresourceIntegrityPlugin(options = {}) {
   this.options = options
