@@ -12,15 +12,20 @@ ExtractSubresourceIntegrityPlugin.prototype.apply = function(compiler) {
       const {
         name = 'subresource-integrity.json',
         extensions = ['js', 'css'],
+        appendPublicPath = true,
       } = this.options
 
+      const prefix =
+        appendPublicPath && compilation.outputOptions.publicPath
+          ? compilation.outputOptions.publicPath
+          : ''
       const integrity = JSON.stringify(
         Object.keys(compilation.assets)
-          .filter(asset => new RegExp(`[${extensions.join('|')}]$`).test(asset))
+          .filter(asset => new RegExp(`(${extensions.join('|')})$`).test(asset))
           .reduce(
             (acc, asset) => ({
               ...acc,
-              [asset]: compilation.assets[asset].integrity,
+              [`${prefix}${asset}`]: compilation.assets[asset].integrity,
             }),
             {}
           )

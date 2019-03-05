@@ -1,6 +1,6 @@
 {
   "name": "webpack-extract-subresource-integrity",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "work with webpack-subresource-integrity, extract integrity infomation into a seperate file",
   "keywords": [
     "webpack",
